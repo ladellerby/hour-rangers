@@ -117,7 +117,7 @@ This is an example of how to list things you need to use the software and how to
 
 1. Create Blank Repo
 2. Install Next.js typescript example `npx create-next-app --example with-typescript {project-name}`
-3. Install Chakra UI `npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion`
+3. Install Chakra UI `npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion @chakra-ui/theme-tools`
 <!-- USAGE EXAMPLES -->
 
 ## Usage
