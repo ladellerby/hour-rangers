@@ -1,15 +1,20 @@
-import Link from "next/link";
+import { Box, Image } from "@chakra-ui/react";
+import React from "react";
 import Layout from "../components/Layout";
+import BackgroundParticles from "../components/ui/widgets/soundboard/particles/BackgroundParticles";
+import Soundboard from "../components/ui/widgets/soundboard/Soundboard";
+import { ButtonList } from "../utils/buttons";
 
-const IndexPage = () => (
-  <Layout title="Home | Hour Rangers">
-    <h1>Hello Hour Rangers 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
-);
+function IndexPage() {
+  return (
+    <Layout title="Home | Hour Rangers">
+      <Box>
+        <Image></Image>
+      </Box>
+      <BackgroundParticles />
+      <Soundboard buttons={ButtonList} />
+    </Layout>
+  );
+}
 
 export default IndexPage;
