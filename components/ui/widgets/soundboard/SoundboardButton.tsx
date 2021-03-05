@@ -1,7 +1,5 @@
 import { Button, Kbd, Text, VStack } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import { useHotkeys } from "react-hotkeys-hook";
-import useKonami from "react-use-konami";
 import useSound from "use-sound";
 
 type Props = {
