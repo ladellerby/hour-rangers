@@ -1,5 +1,7 @@
 import { Button, Kbd, Text, VStack } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
+import useKonami from "react-use-konami";
 import useSound from "use-sound";
 
 type Props = {
@@ -10,7 +12,123 @@ type Props = {
 };
 
 function SoundBoardButton(props: Props) {
-  const [play]: any = useSound(`/sounds/${props.sound}.mp3`);
+  const [play, { stop, isPlaying }]: any = useSound(
+    `/sounds/${props.sound}.mp3`
+  );
+  const [themeShort]: any = useSound(`/sounds/hour-rangers-full-theme.mp3`, {
+    volume: 0.15,
+  });
+  const [theme]: any = useSound(`/sounds/hour-rangers-full-theme.mp3`, {
+    volume: 0.15,
+  });
+  const [dragonZord]: any = useSound(`/sounds/dragonzord.mp3`, {
+    volume: 0.15,
+  });
+  const [commandCenterSiren]: any = useSound(
+    `/sounds/command-center-siren.mp3`,
+    {
+      volume: 0.15,
+    }
+  );
+  const [fire]: any = useSound(`/sounds/fire.mp3`, { volume: 0.15 });
+  const [greenRangerGoGettem]: any = useSound(
+    `/sounds/green-ranger-lets-go-get-em.mp3`,
+    {
+      volume: 0.15,
+    }
+  );
+  const [mergingTime]: any = useSound(`/sounds/joel-mergin-time.mp3`, {
+    volume: 0.15,
+  });
+  const [morphinTime]: any = useSound(`/sounds/joel-morphin-time.mp3`, {
+    volume: 0.15,
+  });
+
+  const [lightning]: any = useSound(`/sounds/lightningv.mp3`, {
+    volume: 0.15,
+  });
+  const [lockOnAndFire]: any = useSound(`/sounds/lock-on-and-fire.mp3`, {
+    volume: 0.15,
+  });
+  const [lordZedd]: any = useSound(`/sounds/lord-zedd.mp3`, {
+    volume: 0.15,
+  });
+  const [monsterGrunts]: any = useSound(`/sounds/monster-grunting.mp3`, {
+    volume: 0.15,
+  });
+  const [dinozordPower]: any = useSound(`/sounds/dinozord-power.mp3`, {
+    volume: 0.15,
+  });
+  const [morphSound]: any = useSound(`/sounds/morph-sound-effects.mp3`, {
+    volume: 0.15,
+  });
+  const [ogTheme]: any = useSound(`/sounds/power-rangers-theme-vocal.mp3`, {
+    volume: 0.15,
+  });
+  const [redRanger]: any = useSound(`/sounds/red-ranger-command-center.mp3`, {
+    volume: 0.15,
+  });
+
+  if (isPlaying) {
+    stop();
+  }
+
+  const playsound = ({ key }: any) => {
+    if (key == "1") {
+      themeShort();
+    }
+    if (key == "2") {
+      theme();
+    }
+    if (key == "3") {
+      dragonZord();
+    }
+    if (key == "4") {
+      commandCenterSiren();
+    }
+    if (key == "q") {
+      fire();
+    }
+    if (key == "w") {
+      greenRangerGoGettem();
+    }
+    if (key == "e") {
+      mergingTime();
+    }
+    if (key == "r") {
+      morphinTime();
+    }
+    if (key == "a") {
+      lightning();
+    }
+    if (key == "s") {
+      lockOnAndFire();
+    }
+    if (key == "d") {
+      lordZedd();
+    }
+    if (key == "f") {
+      monsterGrunts();
+    }
+    if (key == "z") {
+      dinozordPower();
+    }
+    if (key == "x") {
+      morphSound();
+    }
+    if (key == "c") {
+      ogTheme();
+    }
+    if (key == "v") {
+      redRanger();
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("keydown", playsound);
+    return () => {
+      window.removeEventListener("keydown", playsound);
+    };
+  });
 
   return (
     <Button
@@ -20,7 +138,10 @@ function SoundBoardButton(props: Props) {
       border="1px"
       backgroundColor="#FFE35D"
       borderColor="#FF9800"
-      onClick={play}
+      onClick={() => {
+        stop();
+        play();
+      }}
       _active={{
         backgroundColor: "darken(#444, 10%)",
         transition: "all .2s",
