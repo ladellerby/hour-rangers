@@ -42,7 +42,7 @@ function SoundBoardButton(props: Props) {
     volume: 0.15,
   });
 
-  const [lightning]: any = useSound(`/sounds/lightningv.mp3`, {
+  const [lightning]: any = useSound(`/sounds/lightning.mp3`, {
     volume: 0.15,
   });
   const [lockOnAndFire]: any = useSound(`/sounds/lock-on-and-fire.mp3`, {
@@ -66,10 +66,6 @@ function SoundBoardButton(props: Props) {
   const [redRanger]: any = useSound(`/sounds/red-ranger-command-center.mp3`, {
     volume: 0.15,
   });
-
-  if (isPlaying) {
-    stop();
-  }
 
   const playsound = ({ key }: any) => {
     if (key == "1") {
