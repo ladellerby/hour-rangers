@@ -10,9 +10,7 @@ type Props = {
 };
 
 function SoundBoardButton(props: Props) {
-  const [play, { stop, isPlaying }]: any = useSound(
-    `/sounds/${props.sound}.mp3`
-  );
+  const [play, { stop }]: any = useSound(`/sounds/${props.sound}.mp3`);
   const [themeShort]: any = useSound(`/sounds/hour-rangers-full-theme.mp3`, {
     volume: 0.15,
   });
