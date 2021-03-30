@@ -1,6 +1,14 @@
-import { Box, Flex, Grid, GridItem, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Center,
+  Flex,
+  Grid,
+  Image,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React from "react";
 import { Button } from "../../../../interfaces";
+import ThemeSelector from "../ThemeSelectorButton";
 import SoundBoardButton from "./SoundboardButton";
 
 type Props = {
@@ -8,6 +16,10 @@ type Props = {
 };
 
 function Soundboard(props: Props) {
+  const logo = useColorModeValue(
+    "/images/logo-black.png",
+    "/images/logo-white.png"
+  );
   return (
     <Flex
       w={["100%", "100%", "100%", "100%"]}
@@ -19,8 +31,11 @@ function Soundboard(props: Props) {
       m="2.5px"
     >
       <Box>
-        <Image src="/images/logo-black.png"></Image>
+        <Image src={logo}></Image>
       </Box>
+      <Center>
+        <ThemeSelector />
+      </Center>
 
       <Grid
         templateColumns={[
@@ -29,20 +44,15 @@ function Soundboard(props: Props) {
           "repeat(4, 1fr)",
           "repeat(4, 1fr)",
         ]}
-        gap={2}
+        gap={6}
       >
         {props.buttons.map((button) => (
-          <GridItem
-            height={["150px", "150px", "150px", "200px"]}
-            width={["150px", "150px", "150px", "200px"]}
-          >
-            <SoundBoardButton
-              buttonName={button.name}
-              keyName={button.key}
-              icon={button.icon}
-              sound={button.sound}
-            />
-          </GridItem>
+          <SoundBoardButton
+            buttonName={button.name}
+            keyName={button.key}
+            icon={button.icon}
+            sound={button.sound}
+          />
         ))}
       </Grid>
     </Flex>

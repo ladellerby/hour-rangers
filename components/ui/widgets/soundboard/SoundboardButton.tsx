@@ -1,6 +1,18 @@
-import { Button, Kbd, Text, VStack } from "@chakra-ui/react";
+import {
+  chakra,
+  HTMLChakraProps,
+  Kbd,
+  Text,
+  useColorModeValue,
+  VStack,
+} from "@chakra-ui/react";
+import { HTMLMotionProps, motion } from "framer-motion";
 import React, { useEffect } from "react";
 import useSound from "use-sound";
+
+type Merge<P, T> = Omit<P, keyof T> & T;
+type MotionButtonProps = Merge<HTMLChakraProps<"div">, HTMLMotionProps<"div">>;
+const MotionButton: React.FC<MotionButtonProps> = motion(chakra.div);
 
 type Props = {
   buttonName: string;
@@ -10,7 +22,11 @@ type Props = {
 };
 
 function SoundBoardButton(props: Props) {
-  const [play, { stop }]: any = useSound(`/sounds/${props.sound}.mp3`);
+  const [play, { stop }]: any = useSound(`/sounds/${props.sound}.mp3`, {
+    interrupt: true,
+  });
+  const bg = useColorModeValue("white", "gray.900");
+  const color = useColorModeValue("gray.900", "white");
   const [themeShort]: any = useSound(`/sounds/hour-rangers-full-theme.mp3`, {
     volume: 0.15,
   });
@@ -58,7 +74,7 @@ function SoundBoardButton(props: Props) {
   const [morphSound]: any = useSound(`/sounds/morph-sound-effects.mp3`, {
     volume: 0.15,
   });
-  const [ogTheme]: any = useSound(`/sounds/power-rangers-theme-vocal.mp3`, {
+  const [pterodactyl]: any = useSound(`/sounds/pterodactyl.mp3`, {
     volume: 0.15,
   });
   const [redRanger]: any = useSound(`/sounds/red-ranger-command-center.mp3`, {
@@ -109,7 +125,7 @@ function SoundBoardButton(props: Props) {
       morphSound();
     }
     if (key == "c") {
-      ogTheme();
+      pterodactyl();
     }
     if (key == "v") {
       redRanger();
@@ -123,33 +139,42 @@ function SoundBoardButton(props: Props) {
   });
 
   return (
-    <Button
-      size="md"
+    <MotionButton
+      as="button"
       height={["150px", "150px", "150px", "200px"]}
       width={["150px", "150px", "150px", "200px"]}
-      border="1px"
-      backgroundColor="#FFE35D"
-      borderColor="#FF9800"
+      zIndex={99}
+      borderWidth="1px"
+      borderColor={color}
+      bg={bg}
+      color={color}
+      borderRadius="12px"
+      whileTap={{
+        scale: [0.5, 0.9],
+      }}
+      animate={{ scale: [1.2, 0.9, 1] }}
+      transition={{ duration: 0.75 }}
       onClick={() => {
         stop();
         play();
       }}
-      _active={{
-        backgroundColor: "darken(#444, 10%)",
-        transition: "all .2s",
-        transform: "scale(1.1)",
-      }}
     >
       <VStack>
         {/* <Icon as={props.icon} /> */}
-        <Kbd display={["none", "none", "none", "unset"]} h="40px" w="40px">
+        <Kbd
+          color={color}
+          bg={bg}
+          display={["none", "none", "none", "unset"]}
+          h="40px"
+          w="40px"
+        >
           {props.keyName}
         </Kbd>
-        <Text fontSize={["10px", "10px", "10px", "10px"]}>
+        <Text color={color} bg={bg} fontSize={["10px", "10px", "10px", "10px"]}>
           {props.buttonName}
         </Text>
       </VStack>
-    </Button>
+    </MotionButton>
   );
 }
 

@@ -88,9 +88,9 @@ export const ButtonList: Button[] = [
   },
   {
     icon: "fsd",
-    name: "OG Theme",
+    name: "Pterodactyl",
     key: "C",
-    sound: "power-rangers-theme-vocal",
+    sound: "pterodactyl",
   },
   {
     icon: "fsd",
