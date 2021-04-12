@@ -16,6 +16,12 @@ function App({ Component, pageProps }: AppProps): React.ReactNode {
         robotsProps={{
           notranslate: true,
         }}
+        additionalMetaTags={[
+          {
+            property: "google",
+            content: "notranslate",
+          },
+        ]}
       />
       <ChakraProvider theme={extendTheme({ colors })}>
         <BackgroundParticles />
