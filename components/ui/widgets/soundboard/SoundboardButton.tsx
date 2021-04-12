@@ -150,7 +150,7 @@ function SoundBoardButton(props: Props) {
       color={color}
       borderRadius="12px"
       whileTap={{
-        scale: [0.5, 0.9],
+        scale: [1, 0.5, 1, 1, 0.5, 0.5],
       }}
       animate={{ scale: [1.2, 0.9, 1] }}
       transition={{ duration: 0.75 }}
